@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Nav from './components/Navbar';
 import Card from './components/Card';
 import characters from "./data/characters";
 

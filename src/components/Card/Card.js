@@ -3,8 +3,8 @@ import styled from 'styled-components';
 
 const StyledImg = styled.img`
     width: 50em;
-`
-    ;
+    background-color: black;
+`;
 
 class Card extends Component {
     constructor() {
