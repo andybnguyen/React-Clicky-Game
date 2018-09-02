@@ -1,1 +1,2 @@
-export {default} from "./Card";
+export * from "./CardHolder"
+export * from "./Card";

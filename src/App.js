@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import Nav from './components/Navbar';
-import Card from './components/Card';
+import { CardHolder, Card } from "./components/Card";
 import characters from "./data/characters";
 
 class App extends Component {
@@ -8,6 +7,9 @@ class App extends Component {
     super();
     this.state = {
       data: characters,
+      score: 0,
+      clickedIdArray: [],
+      newClickId: 0,
     }
   }
   shuffleArray = array => {
@@ -21,18 +23,47 @@ class App extends Component {
     return array;
   };
 
+  handleCardClicked = id => {
+    console.log(`handlecardclick ${id}`);
+    this.setState({ 
+      newClickId: id,
+      clickedIdArray: this.state.clickedIdArray.concat([id])
+    });
+  }
+
+  check = id => {
+    return this.state.clickedIdArray.includes(id) ? false : true;
+  }
+
+  updateScore = id => {
+    this.handleCardClicked(id)
+    if(this.check(id)) {
+      this.setState({score: this.state.score + 1})
+    }
+  }
+
   render() {
     return (
-      <div onClick={() => this.setState({data: this.shuffleArray(characters)})}>
-        {
-          this.state.data.map((object) => (
-            <Card
-              id={object.id}
-              imgURL={object.imgURL}
-            />
-          ))
-        }
-      </div>
+      <React.Fragment>
+        <div>Score: {this.state.score}</div>
+        <CardHolder onClick={() => this.setState({
+          data: this.shuffleArray(characters),
+        })}>
+          {
+            this.state.data.map(object => {
+              return (
+                <Card
+                  key={object.id}
+                  id={object.id}
+                  imgURL={object.imgURL}
+                  updateScore={this.updateScore}
+                />
+              )
+            }
+            )
+          }
+        </CardHolder>
+      </React.Fragment>
     );
   }
 }
