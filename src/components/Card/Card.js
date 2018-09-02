@@ -10,7 +10,7 @@ export const Card = (props) => {
         <StyledImg
             src={props.imgURL}
             alt="Card image cap"
-            onClick={() => {props.updateScore(props.id)}}
+            onClick={() => {props.handleCardClicked(props.id)}}
         />
     )
 };

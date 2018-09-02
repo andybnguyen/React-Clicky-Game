@@ -8,6 +8,7 @@ class App extends Component {
     this.state = {
       data: characters,
       score: 0,
+      highestscore: 0,
       clickedIdArray: [],
       newClickId: 0,
     }
@@ -24,23 +25,25 @@ class App extends Component {
   };
 
   handleCardClicked = id => {
-    console.log(`handlecardclick ${id}`);
-    this.setState({ 
-      newClickId: id,
-      clickedIdArray: this.state.clickedIdArray.concat([id])
-    });
-  }
+    if (this.check(id)) {
+      this.setState({
+        newClickId: id,
+        clickedIdArray: this.state.clickedIdArray.concat([id]),
+        score: this.state.score + 1
+      })
+    } else {
+      this.setState({
+        newClickId: 0,
+        clickedIdArray: [],
+        score: 0,
+      })
+    }
+  };
+
 
   check = id => {
     return this.state.clickedIdArray.includes(id) ? false : true;
-  }
-
-  updateScore = id => {
-    this.handleCardClicked(id)
-    if(this.check(id)) {
-      this.setState({score: this.state.score + 1})
-    }
-  }
+  };
 
   render() {
     return (
@@ -56,16 +59,15 @@ class App extends Component {
                   key={object.id}
                   id={object.id}
                   imgURL={object.imgURL}
-                  updateScore={this.updateScore}
+                  handleCardClicked={this.handleCardClicked}
                 />
               )
-            }
-            )
+            })
           }
         </CardHolder>
       </React.Fragment>
     );
-  }
+  };
 }
 
 export default App;
