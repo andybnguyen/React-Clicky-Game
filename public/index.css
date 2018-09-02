@@ -1,0 +1,7 @@
+body {
+   width:100%;
+   height: auto;
+   background-image:url('https://orig00.deviantart.net/dc2f/f/2009/096/4/2/rocks_and_trees_maplestory_map_by_gaphary.png');/*your background image*/  
+   background-repeat:no-repeat;/*we want to have one single image not a repeated one*/  
+   background-size:cover;/*this sets the image to fullscreen covering the whole screen*/
+}

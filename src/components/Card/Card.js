@@ -2,8 +2,7 @@ import React, { Component } from "react";
 import styled from 'styled-components';
 
 const StyledImg = styled.img`
-    border: 3px solid green;
-    width: 20em;
+    width: 50em;
 `
     ;
 
