@@ -3,6 +3,10 @@ import styled from 'styled-components';
 
 const StyledImg = styled.img`
     width: 15%;
+    &:hover {
+	-webkit-transform: scale(1.3);
+	transform: scale(1.3);
+    };
 `;
 
 export const Card = (props) => {
