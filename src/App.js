@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import Nav from './components/Navbar';
 import Card from './components/Card';
-import dotaObjects from "./data/dotaHeroes";
+import characters from "./data/characters";
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      data: dotaObjects,
+      data: characters,
     }
   }
   shuffleArray = array => {
@@ -23,7 +23,7 @@ class App extends Component {
 
   render() {
     return (
-      <div onClick={() => this.setState({data: this.shuffleArray(dotaObjects)})}>
+      <div onClick={() => this.setState({data: this.shuffleArray(characters)})}>
         {
           this.state.data.map((object) => (
             <Card
