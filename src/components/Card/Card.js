@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import styled from 'styled-components';
 
 const StyledImg = styled.img`
-    width: 20em;
+    width: 15%;
 `;
 
 export const Card = (props) => {

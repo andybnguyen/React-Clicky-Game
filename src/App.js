@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { CardHolder, Card } from "./components/Card";
+import { Score } from "./components/Score";
 import characters from "./data/characters";
 
 class App extends Component {
@@ -8,9 +9,9 @@ class App extends Component {
     this.state = {
       data: characters,
       score: 0,
-      highestscore: 0,
-      clickedIdArray: [],
+      highestScore: 0,
       newClickId: 0,
+      clickedIdArray: [],
     }
   }
   shuffleArray = array => {
@@ -25,17 +26,21 @@ class App extends Component {
   };
 
   handleCardClicked = id => {
+    const {score, highestScore, clickedIdArray} = this.state;
     if (this.check(id)) {
       this.setState({
+        data: this.shuffleArray(characters),
+        score: score + 1,
+        highestScore: score + 1> highestScore ? score + 1: highestScore,
         newClickId: id,
-        clickedIdArray: this.state.clickedIdArray.concat([id]),
-        score: this.state.score + 1
+        clickedIdArray: clickedIdArray.concat([id]),
       })
     } else {
       this.setState({
+        data: characters,
+        score: 0,
         newClickId: 0,
         clickedIdArray: [],
-        score: 0,
       })
     }
   };
@@ -48,7 +53,7 @@ class App extends Component {
   render() {
     return (
       <React.Fragment>
-        <div>Score: {this.state.score}</div>
+        <Score score={this.state.score} highScore={this.state.highestScore}/>
         <CardHolder onClick={() => this.setState({
           data: this.shuffleArray(characters),
         })}>
